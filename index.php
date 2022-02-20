@@ -2,9 +2,9 @@
 
     $view_variable = 'test string';
 
-    $servername = "your-server-name";
-    $username = "your-username";
-    $password = "your-password";
+    $servername = "localhost";
+    $username = "root";
+    $password = "M00np1g#";
 
     echo $_POST['username'];
     echo $_REQUEST['username'];
@@ -47,6 +47,7 @@
 
     <?php
     function console_log($output, $with_script_tags = true) {
+      //very handy stript to output messages to the browser console
         $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
     ');';
         if ($with_script_tags) {
@@ -102,17 +103,12 @@
       if (count($dataArr)>0){
         //console_log('prelooping::');
         for ($i=0; $i < count($dataArr); $i++){
-
-            //console_log($dataArr[$i].'<<looping entry::');
             if ($dataArr[$i] === '.'){//formating on period
-
                 if ($i> 0 && $i< (count($dataArr)-1)){
-                  //console_log(!is_nan($dataArr[$i-1]).'<<looping FULL STOP compare::'.$dataArr[$i-1].' - - '.$dataArr[$i*1+1]);
-                  if (!is_nan($dataArr[$i-1])&&$dataArr[$i*1+1]==' '){//number before so skip the break!
+                  if (!is_nan($dataArr[$i-1])&&$dataArr[$i*1+1]===' '||$dataArr[$i*1+1]==']'||$dataArr[$i*1+1]==')'){//number before so skip the break!
                     $formattedTxt .= $dataArr[$i];
                   }else{
                     //just do it
-                    //console_log(!is_nan($dataArr[$i-1]).'<<looping DO IT::'.(count($dataArr)-1));
                     $formattedTxt .= $dataArr[$i].'<BR>';
                   };
                 }else{
@@ -123,11 +119,10 @@
               //first letter, just do it
               $formattedTxt .= $dataArr[$i];
             };
-
           };
-        }
+        };
       return $formattedTxt;
-    }
+    };
     ?>
 
     <?= console_log('zzzz'); ?>
