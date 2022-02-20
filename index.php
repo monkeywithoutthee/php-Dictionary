@@ -1,7 +1,6 @@
 <?php
 
-    $view_variable = 'a string here';
-    $view_variable2 = 'aother string here';
+    $view_variable = 'test string';
 
     $servername = "localhost";
     $username = "root";
@@ -62,7 +61,7 @@
     if ($_POST) {
         if ($_POST['word']){
           $word = $_REQUEST['word'];
-          console.log('$word::',$word);
+          //console.log('$word::',$word);
           if ($word===""){
             $noWord = "<script>alert('please enter a word!');return false;</script>";
             echo $noWord;
@@ -74,46 +73,46 @@
             foreach($conn->query($query) as $row) {
               if ($i===0){
                 $formatedText = formatText($row['definition']);
-                console_log($row['definition'].'<<formatedText::'.$formatedText);
-              }
+                //console_log($row['definition'].'<<formatedText::'.$formatedText);
+              };
                 echo '<div>';
                 echo '<div class="innerRow divwod">' . $row['word'] . '</div>';
                 echo '<div class="innerRow divdef">' . $formatedText . '</div>';
                 echo '</div>';
                 $i = i + 1;
-            }
+            };
               setcookie($cookie_name,$cookie_value);
             if ($i === 0 && $word !== ""){
               echo '<div>';
               echo '<div class="innerRow">' . $word . ' is not a word!</div>';
               echo '</div>';
-            }
+            };
 
-            console_log($i . '<<POSTED::',$_REQUEST['word']);
-        }
+          //  console_log($i . '<<POSTED::',$_REQUEST['word']);
+        };
     }else{
       console_log('<<POSTED????::');
     }
 
     function formatText($data){
-
+      //real basic text formating of plain text string
       $dataArr =str_split($data);
-      console_log(count($dataArr).'<<IN formatText::'.$data);
+      //console_log(count($dataArr).'<<IN formatText::'.$data);
       $formattedTxt = '';
       if (count($dataArr)>0){
-        console_log('prelooping::');
+        //console_log('prelooping::');
         for ($i=0; $i < count($dataArr); $i++){
 
-            console_log($dataArr[$i].'<<looping entry::');
+            //console_log($dataArr[$i].'<<looping entry::');
             if ($dataArr[$i] === '.'){//formating on period
 
                 if ($i> 0 && $i< (count($dataArr)-1)){
-                  console_log(!is_nan($dataArr[$i-1]).'<<looping FULL STOP compare::'.$dataArr[$i-1].' - - '.$dataArr[$i*1+1]);
+                  //console_log(!is_nan($dataArr[$i-1]).'<<looping FULL STOP compare::'.$dataArr[$i-1].' - - '.$dataArr[$i*1+1]);
                   if (!is_nan($dataArr[$i-1])&&$dataArr[$i*1+1]==' '){//number before so skip the break!
                     $formattedTxt .= $dataArr[$i];
                   }else{
                     //just do it
-                    console_log(!is_nan($dataArr[$i-1]).'<<looping DO IT::'.(count($dataArr)-1));
+                    //console_log(!is_nan($dataArr[$i-1]).'<<looping DO IT::'.(count($dataArr)-1));
                     $formattedTxt .= $dataArr[$i].'<BR>';
                   };
                 }else{
@@ -131,17 +130,14 @@
     }
     ?>
 
-    <?= console_log('zzzz' . $view_variable); ?>
+    <?= console_log('zzzz'); ?>
 
 
     <script>
-    // other JavaScript code before ...
-
-    var js_variable_as_placeholder = <?= json_encode($view_variable2,
-        JSON_HEX_TAG); ?>;
+    //gets a js value of php variable
+    var js_variable_as_placeholder = <?= json_encode($view_variable,JSON_HEX_TAG); ?>;
     console.log('booom::',js_variable_as_placeholder);
 
-    // other JavaScript code and after ...
     </script>
   </div>
   </body>
