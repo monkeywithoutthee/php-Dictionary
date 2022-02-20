@@ -2,9 +2,9 @@
 
     $view_variable = 'test string';
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "M00np1g#";
+    $servername = "your-server-name";
+    $username = "your-username";
+    $password = "your-password";
 
     echo $_POST['username'];
     echo $_REQUEST['username'];
