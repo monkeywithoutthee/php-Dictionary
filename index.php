@@ -6,9 +6,6 @@
     $username = "your-mysql-username";
     $password = "your-mysql-password";
 
-    echo $_POST['username'];
-    echo $_REQUEST['username'];
-
     $cookie_value = "";
     $cookie_name = "lastpost";
 
@@ -104,7 +101,7 @@
         //console_log('prelooping::');
         for ($i=0; $i < count($dataArr); $i++){
             if ($dataArr[$i] === '.'){//formating on period
-                if ($i> 0 && $i< (count($dataArr)-1)){
+                if ($i> 0 && $i< (count($dataArr)-1)){//on these occasions dont do it
                   if (!is_nan($dataArr[$i-1])&&$dataArr[$i*1+1]===' '||$dataArr[$i*1+1]==']'||$dataArr[$i*1+1]==')'){//number before so skip the break!
                     $formattedTxt .= $dataArr[$i];
                   }else{
@@ -112,11 +109,11 @@
                     $formattedTxt .= $dataArr[$i].'<BR>';
                   };
                 }else{
-                  //first letter, just do it
+                  //first letter, dont do it
                   $formattedTxt .= $dataArr[$i];
                 };
             }else{
-              //first letter, just do it
+              //first letter, dont do it
               $formattedTxt .= $dataArr[$i];
             };
           };
