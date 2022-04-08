@@ -1,5 +1,8 @@
 <?php
 
+    error_reporting(E_ALL);
+    ini_set('display_errors', 'On');
+
     $view_variable = 'test string';
 
     $servername = "your-server-name";
@@ -44,7 +47,7 @@
 
     <?php
     function console_log($output, $with_script_tags = true) {
-      //very handy stript to output messages to the browser console
+      //very handy stript to output messages to the browser JS console
         $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
     ');';
         if ($with_script_tags) {
@@ -102,7 +105,7 @@
         for ($i=0; $i < count($dataArr); $i++){
             if ($dataArr[$i] === '.'){//formating on period
                 if ($i> 0 && $i< (count($dataArr)-1)){//on these occasions dont do it
-                  if (!is_nan($dataArr[$i-1])&&$dataArr[$i*1+1]===' '||$dataArr[$i*1+1]==']'||$dataArr[$i*1+1]==')'){//number before so skip the break!
+                  if (!is_numeric($dataArr[$i-1])&&$dataArr[$i*1+1]===' '||$dataArr[$i*1+1]==']'||$dataArr[$i*1+1]==')'){//number before so skip the break!
                     $formattedTxt .= $dataArr[$i];
                   }else{
                     //just do it
